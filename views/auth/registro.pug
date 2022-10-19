@@ -1,0 +1,26 @@
+extends ../layout/index
+
+block contenido
+    div
+        h1.text-4xl.my-7.font-extrabold.text-center Bienes
+            span.font-normal Raices
+        h2.text-center.text-2xl.font-extrabold= titulo
+        div.mt-8.mx-auto.max-w-md
+            div.bg-white.py-8.px-4.shadow
+                form(class="space-y-3")
+                    div
+                        label(for="nombre").block.text-sm.uppercase.text-gray-500.mb-2.font-bold Tu nombre
+                        input(id="nombre")(placeholder="Tu nombre" type="text" name="nombre").w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400
+                    div
+                        label(for="email").block.text-sm.uppercase.text-gray-500.mb-2.font-bold Tu email
+                        input(id="email")(placeholder="Tu email" type="email" name="email").w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400
+                    div
+                        label(for="password").block.text-sm.uppercase.text-gray-500.mb-2.font-bold Password
+                        input(id="password")(placeholder="Tu password" type="password" name="password").w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400
+                    div
+                        label(for="repetir_password").block.text-sm.uppercase.text-gray-500.mb-2.font-bold Repetir Password
+                        input(id="repetir_password")(placeholder="Repetir password" type="password" name="repetir_password").w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400
+                    div(class="flex items-center justify-between")
+                        a(class="text-slate-300 text-xs")(href="/bienes-raices/auth/login") ¿Ya tienes cuenta? Inicia Sesión
+                        a(class="text-slate-300 text-xs")(href="/bienes-raices/auth/restaurar-password") Olvide mi password
+                    input(class="w-full bg-amber-500 rounded-md h-10 text-white font-bold" type="submit" value="Crear Cuenta")

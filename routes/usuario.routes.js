@@ -1,0 +1,15 @@
+import express from 'express';
+import { login, registrar, restaurarPassword } from '../controllers/usuario.controller.js';
+
+const router = express.Router();
+
+router.get('/login', login); //ver: login --> representa el controlador
+router.get('/registro', registrar);
+router.get('/restaurar-password', restaurarPassword)
+
+router.post('/contacto', (req, res) =>{
+    res.json({mensaje:'Estas en la página de contacto'});
+});
+
+
+export default router;
