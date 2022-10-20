@@ -7,7 +7,7 @@ block contenido
         h2.text-center.text-2xl.font-extrabold= titulo
         div.mt-8.mx-auto.max-w-md
             div.bg-white.py-8.px-4.shadow
-                form(class="space-y-3")
+                form(class="space-y-3")(method="POST" action="/bienes-raices/auth/registrar")
                     div
                         label(for="nombre").block.text-sm.uppercase.text-gray-500.mb-2.font-bold Tu nombre
                         input(id="nombre")(placeholder="Tu nombre" type="text" name="nombre").w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400
@@ -23,4 +23,4 @@ block contenido
                     div(class="flex items-center justify-between")
                         a(class="text-slate-300 text-xs")(href="/bienes-raices/auth/login") ¿Ya tienes cuenta? Inicia Sesión
                         a(class="text-slate-300 text-xs")(href="/bienes-raices/auth/restaurar-password") Olvide mi password
-                    input(class="w-full bg-amber-500 rounded-md h-10 text-white font-bold" type="submit" value="Crear Cuenta")
+                    input(class="hover:bg-orange-300 w-full bg-amber-500 rounded-md h-10 text-white font-bold" type="submit" value="Crear Cuenta")

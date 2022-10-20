@@ -3,8 +3,19 @@
 
 import express from 'express'; // ECMAScript, nueva forma de importar librerias
 import usuarioRoutes from './routes/usuario.routes.js';
+import db from './config/db.js';
 
 const app = express();
+
+app.use(express.urlencoded({extended:false}))
+//conexion a bd
+try {
+    await db.authenticate();
+    db.sync();//hace que se creen tablas si no existe
+    console.log('Conexion exitosa a la base de datos');
+} catch (error) {
+    console.log(error);
+}
 
 //configurar pug
 app.set('view engine', 'pug');

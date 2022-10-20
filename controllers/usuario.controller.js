@@ -1,3 +1,5 @@
+import {check, validationResult} from 'express-validator';
+import Usuario from '../models/Usuario.js';
 
 const login = (req, res) =>{
     res.render('auth/login', {
@@ -5,7 +7,7 @@ const login = (req, res) =>{
     });
 }
 
-const registrar = (req, res) =>{
+const registro = (req, res) =>{
     res.render('auth/registro', {
         titulo:'Crear Cuenta'
     });
@@ -17,8 +19,18 @@ const restaurarPassword = (req, res)=>{
     });
 };
 
+const registrar = async (req, res)=>{
+
+    await check('nombre').notEmpty().withMessage('El nombre no puede quedar vacio').run(req);
+    let resultado = validationResult(req, res);
+    console.log(resultado);
+    const usuario = await Usuario.create(req.body);
+    res.json(usuario);
+};
+
 export {
     login,
+    registro,
     registrar,
     restaurarPassword
 }
