@@ -5,7 +5,7 @@ dotenv.config({path: '.env'});
 
 const db = new Sequelize(process.env.DBNAME, process.env.USER,process.env.PASSWORD, {
     host: process.env.HOST,
-    port: process.env.PORT,
+    port: process.env.DBPORT,
     dialect: 'postgres',
     define:{
         timestamps: true
