@@ -27,6 +27,34 @@ const emailRegistro = async (datos) =>{
       });
 }
 
+const emailNuevoPassword = async (datos) =>{
+    const transport = nodemailer.createTransport({
+        host: process.env.MAILHOST,
+        port: process.env.MAILPORT,
+            auth: {
+            user: process.env.MAILUSER,
+            pass: process.env.MAILPASSWORD
+            }
+      });
+
+      const { nombre, email, token} = datos;
+      await transport.sendMail({
+        from: 'PruebasNodeJS.com',
+        to: email,
+        subject: 'Restablecer tu password en Node.js',
+        text: 'Restablecer tu password en Node.js',
+        html: `
+            <p>Hola ${nombre}, has solicitado restablecer tu password en NodeJS.com</p>
+            <p>Sigue el siguiente enlace para generar un password nuevo:
+            <a href="${process.env.BACKENDURL}:${process.env.PORT ?? 3000}/bienes-raices/auth/restaurar-password/${token}">
+            Restablecer password</a></p>
+
+            <p>Si tu no solicitaste este cambio puedes ingorar este correo.</p>
+        `
+      });
+}
+
 export {
-    emailRegistro
+    emailRegistro,
+    emailNuevoPassword
 }

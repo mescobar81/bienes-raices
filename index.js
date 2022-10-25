@@ -2,12 +2,21 @@
 //const express = require('express'); // --> CommonJs, forma de importar antiguo
 
 import express from 'express'; // ECMAScript, nueva forma de importar librerias
+import csurf from 'csurf';
+import cookieParser from 'cookie-parser';
+
 import usuarioRoutes from './routes/usuario.routes.js';
 import db from './config/db.js';
 
 const app = express();
 
 app.use(express.urlencoded({extended:false}))
+
+//habilita cookie-parser
+app.use(cookieParser());
+
+app.use(csurf({cookie:true}))
+
 //conexion a bd
 try {
     await db.authenticate();

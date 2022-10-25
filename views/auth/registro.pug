@@ -14,6 +14,7 @@ block contenido
         div.mt-8.mx-auto.max-w-md
             div.bg-white.py-8.px-4.shadow
                 form(class="space-y-3")(method="POST" action="/bienes-raices/auth/registrar" noValidate)
+                    input(type="hidden" name="_csrf" value=csrfToken)
                     div
                         label(for="nombre").block.text-sm.uppercase.text-gray-500.mb-2.font-bold Tu nombre
                         input(class="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400")(
