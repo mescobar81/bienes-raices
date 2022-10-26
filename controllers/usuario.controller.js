@@ -6,9 +6,51 @@ import Usuario from '../models/Usuario.js';
 
 const login = (req, res) => {
     res.render('auth/login', {
-        titulo: 'Iniciar Sesión'
+        titulo: 'Iniciar Sesión',
+        csrfToken:req.csrfToken()
     });
 }
+
+const autenticar = async (req, res) =>{
+
+    await check('email').isEmail().withMessage('El email es obligatorio').run(req);
+    await check('password').notEmpty().withMessage('La contraseña es obligatorio').run(req);
+
+    const resultado = validationResult(req);
+
+    if(!resultado.isEmpty()){
+        return res.render('auth/login', {
+            titulo:'Iniciar Sesión',
+            csrfToken:req.csrfToken(),
+            errors:resultado.array()
+        });
+    }
+
+    const {email, password} = req.body;
+    //validar que el usuario exista
+    const usuario = await Usuario.findOne({where:{email}});
+    if(!usuario){
+        return res.render('auth/login', {
+            titulo:'Iniciar Sesión',
+            csrfToken:req.csrfToken(),
+            errors:[{msg:'El usuario no existe'}]
+        });
+    }
+
+    //vaidar si el usuario confirmo su cuenta
+
+    if(!usuario.confirmado){
+        return res.render('auth/login', {
+            titulo:'Iniciar Sesión',
+            csrfToken:req.csrfToken(),
+            errors:[{msg:'El usuario no esta confirmado'}]
+        });
+    }
+
+    console.log('usuario autenticado...');
+
+
+};
 
 const registro = (req, res) => {
     
@@ -205,7 +247,7 @@ const nuevoPassword = async (req, res) =>{
     const {password} = req.body;
     const usuario = await Usuario.findOne({where: {token}});
 
-    //hashear de nuevo el password nuevo
+    //hashear de nuevo el password cambiado
     const salt = await bcrypt.genSalt(10);
     usuario.password = await bcrypt.hash(password, salt);
 
@@ -221,6 +263,7 @@ const nuevoPassword = async (req, res) =>{
 
 export {
     login,
+    autenticar,
     registro,
     registrar,
     confirmar,

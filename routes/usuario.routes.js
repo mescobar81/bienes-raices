@@ -3,11 +3,14 @@ import { login, registro, registrar, restaurarPassword,
     confirmar, 
     resetPassword, 
     comprobarToken, 
-    nuevoPassword } from '../controllers/usuario.controller.js';
+    nuevoPassword, 
+    autenticar} from '../controllers/usuario.controller.js';
 
 const router = express.Router();
 
 router.get('/login', login); //ver: login --> representa el controlador
+router.post('/login', autenticar);
+
 router.get('/registro', registro);
 router.get('/restaurar-password', restaurarPassword);
 router.post('/restaurar-password', resetPassword);
