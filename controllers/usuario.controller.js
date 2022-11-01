@@ -1,7 +1,7 @@
 import { check, validationResult } from 'express-validator';
 import bcrypt from 'bcrypt';
+import {generarId, generarToken} from '../helpers/token.js';
 import { emailNuevoPassword, emailRegistro } from '../helpers/email.js';
-import {generarId} from '../helpers/token.js';
 import Usuario from '../models/Usuario.js';
 
 const login = (req, res) => {
@@ -47,7 +47,21 @@ const autenticar = async (req, res) =>{
         });
     }
 
-    console.log('usuario autenticado...');
+    if(!usuario.verificarPassword(password)){
+        return res.render('auth/login', {
+            titulo:'Iniciar Sesión',
+            csrfToken:req.csrfToken(),
+            errors:[{msg:'Credenciales inválidas'}]
+        });
+    }
+
+    const token = generarToken({id:usuario.id, nombre:usuario.nombre});
+
+    //almacenar el token en cookies
+
+    return res.cookie('_token', token, {
+        httpOnly:true
+    }).redirect('/bienes-raices/propiedades/crear');
 
 
 };

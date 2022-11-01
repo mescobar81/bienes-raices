@@ -1,5 +1,8 @@
 import express from 'express';
-import { login, registro, registrar, restaurarPassword, 
+import { login, 
+    registro, 
+    registrar, 
+    restaurarPassword, 
     confirmar, 
     resetPassword, 
     comprobarToken, 

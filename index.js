@@ -6,6 +6,7 @@ import csurf from 'csurf';
 import cookieParser from 'cookie-parser';
 
 import usuarioRoutes from './routes/usuario.routes.js';
+import propiedadesRoutes from './routes/propiedades.routes.js';
 import db from './config/db.js';
 
 const app = express();
@@ -35,6 +36,7 @@ app.use(express.static('public'));
 
 //routing
 app.use('/bienes-raices/auth', usuarioRoutes);
+app.use('/bienes-raices', propiedadesRoutes);
 
 const PORT = process.env.PORT || 3000;
 

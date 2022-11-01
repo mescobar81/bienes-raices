@@ -1,0 +1,19 @@
+extends ../layout/index
+block contenido
+    div
+        h1.text-4xl.my-7.font-extrabold.text-center Prueba
+            span.font-normal Node.js
+        h2.text-center.text-2xl.font-extrabold= titulo
+
+        div(class="bg-white shadow-lg max-w-md mx-auto px-3 py-2 mt-4")
+            form(class="space-y-2")
+                div(class="space-y-4")
+                    h3(class="text-lg leading-6 font-medium text-gray-900") Información General
+                    p(class="text-gray-600") Añade información sobre la propiedad en venta
+                div
+                    label(for="titulo").block.text-sm.uppercase.text-gray-500.mb-2.font-bold Título
+                    input(id="titulo")(placeholder="Titulo Propiedad, ej. Casa en la Playa" type="text" name="titulo").w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400
+                div
+                    label(for="categoria").block.text-sm.uppercase.text-gray-500.mb-2.font-bold Categoría
+                    select(id="categoria" name="titulo").w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400
+                        option(value="") -Seleccione-

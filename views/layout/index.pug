@@ -1,5 +1,5 @@
 doctype html
-html(lang="en")
+html(lang="es")
     head
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
@@ -7,5 +7,7 @@ html(lang="en")
         title Bienes Raices | #{titulo}
         link(rel="stylesheet", href="/css/app.css")
     body(class="bg-gray-50")
+        if mostrarBarra
+            include header
         main(class="mx-auto mt-10 px-2")
             block contenido
