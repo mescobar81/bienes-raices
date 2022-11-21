@@ -1,4 +1,6 @@
 extends ../layout/index
+block styles
+    link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
 block contenido
     div
         h1.text-4xl.my-7.font-extrabold.text-center Prueba
@@ -13,21 +15,30 @@ block contenido
                 div
                     label(for="titulo").block.text-sm.uppercase.text-gray-500.mb-2.font-bold Título
                     input(class="w-full px-3 py-2 border-2 border-blue-400 rounded-md placeholder-gray-400" id="titulo" placeholder="Titulo Propiedad, ej. Casa en la Playa" type="text" name="titulo")
-                
+                div
+                    label(for="descripcion" class="block text-sm uppercase text-gray-500 mb-2 font-bold") Descripción
+                    textarea(class="w-full px-3 py-2 border-2 border-blue-400 rounded-md placeholder-gray-400" id="titulo" placeholder="Descripción de la  Propiedad" name="descripcion")
+
                 div(class="space-y-3 md:flex md:gap-4 md:space-y-0")
                     div(class="md:w-1/2")
                         label(for="categoria").block.text-sm.uppercase.text-gray-500.mb-2.font-bold Categoría
                         select(id="categoria" name="titulo").w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400
+                            if categorias
                             option(value="") -Seleccione-
+                                each c in categorias
+                                    option(value=c.id)=c.nombre
                     div(class="md:w-1/2")
                         label(for="precio").block.text-sm.uppercase.text-gray-500.mb-2.font-bold Precio
                         select(id="precio" name="precio").w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400
+                            if precios
                             option(value="") -Seleccione-
+                                each p in precios
+                                    option(valud=p.id)=p.nombre
 
                 div(class="space-y-3 md:flex md:gap-4 md:space-y-0")
                     div(class="md:w-1/2")
                         label(for="habitacion").block.text-sm.uppercase.text-gray-500.mb-2.font-bold Habitación
-                        select(id="habitacion" name="habitacion").w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400
+                        select(id="habitacion" name="habitaciones").w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400
                             option(value="") -Seleccione-
                             -let h = 1;
                                  while h < 10
@@ -48,6 +59,15 @@ block contenido
                             -let wc = 1;
                                 while wc < 5
                                     option(value=wc) #{wc++}
+                div(class="border-gray-200 border-t py-5 space-y-4") 
+                    h3(class="text-lg leading-6 font-medium text-gray-900") Ubicación
+                    p(class="text-gray-600") Ubica la propiedad en el mapa
+                #mapa(class="h-96")
+                div
+                    p(class="calle")
+                input(type="hidden" name="calle" id="calle")
+                input(type="hidden" name="lat" id="lat")
+                input(type="hidden" name="lng" id="lng")
 
 block scripts
     script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")

@@ -1,5 +1,5 @@
 {
-  "name": "Bienes Raices",
+  "name": "bienes_raices",
   "version": "1.0.0",
   "description": "Proyecto Bienes y Raices",
   "main": "index.js",
@@ -8,7 +8,9 @@
     "start": "nodemon index",
     "css": "postcss public/css/tailwind.css -o public/css/app.css --watch",
     "js": "webpack --watch",
-    "dev": "concurrently \"npm run js\" \"npm run css\" "
+    "dev": "concurrently \"npm run js\" \"npm run css\"",
+    "dev:importar": "node ./seed/seeder.js -i",
+    "dev:eliminar": "node ./seed/seeder.js -e"
   },
   "keywords": [],
   "author": "Anonimo",
