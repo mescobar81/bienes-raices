@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 (function () {
 
     const lat = -25.332642122576598;
@@ -7,10 +8,18 @@
 
     //utilizar provider y geocoder
     const geocodeService = L.esri.Geocoding.geocodeService()
+=======
+(function() {
+    const lat = -25.332553;
+    const lng = -57.573549;
+    const mapa = L.map('mapa').setView([lat, lng ], 13);
+    
+>>>>>>> 5a37895c6fcedff6f6a98ef9729aef0143b0c36a
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mapa);
 
+<<<<<<< HEAD
     marker = new L.marker([lat, lng], {
         draggable: true,
         autoPan: true
@@ -31,5 +40,7 @@
         });
     });
 
+=======
+>>>>>>> 5a37895c6fcedff6f6a98ef9729aef0143b0c36a
 
 })()

@@ -1,6 +1,13 @@
 extends ../layout/index
+<<<<<<< HEAD
 block styles
     link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+=======
+
+block styles
+    link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+
+>>>>>>> 5a37895c6fcedff6f6a98ef9729aef0143b0c36a
 block contenido
     div
         h1.text-4xl.my-7.font-extrabold.text-center Prueba
@@ -59,6 +66,7 @@ block contenido
                             -let wc = 1;
                                 while wc < 5
                                     option(value=wc) #{wc++}
+<<<<<<< HEAD
                 div(class="border-gray-200 border-t py-5 space-y-4") 
                     h3(class="text-lg leading-6 font-medium text-gray-900") Ubicación
                     p(class="text-gray-600") Ubica la propiedad en el mapa
@@ -68,6 +76,9 @@ block contenido
                 input(type="hidden" name="calle" id="calle")
                 input(type="hidden" name="lat" id="lat")
                 input(type="hidden" name="lng" id="lng")
+=======
+                #mapa(class="h-96")
+>>>>>>> 5a37895c6fcedff6f6a98ef9729aef0143b0c36a
 
 block scripts
     script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
