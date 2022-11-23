@@ -1,21 +1,18 @@
 extends ../layout/index
-<<<<<<< HEAD
 block styles
     link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
-=======
-
-block styles
-    link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
-
->>>>>>> 5a37895c6fcedff6f6a98ef9729aef0143b0c36a
 block contenido
     div
         h1.text-4xl.my-7.font-extrabold.text-center Prueba
             span.font-normal Node.js
         h2.text-center.text-2xl.font-extrabold= titulo
-
+        if errors 
+            div
+                each e in errors
+                    p(class="") =e.msg
         div(class="bg-white shadow-lg max-w-2xl mx-auto px-3 py-2 mt-4")
-            form(class="space-y-2")
+            form(class="space-y-2" action="/bienes-raices/propiedades/crear" method="POST")
+                input(type="hidden" name="_csrf" value=csrfToken)
                 div(class="space-y-4")
                     h3(class="text-lg leading-6 font-medium text-gray-900") Información General
                     p(class="text-gray-600") Añade información sobre la propiedad en venta
@@ -31,16 +28,16 @@ block contenido
                         label(for="categoria").block.text-sm.uppercase.text-gray-500.mb-2.font-bold Categoría
                         select(id="categoria" name="titulo").w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400
                             if categorias
-                            option(value="") -Seleccione-
-                                each c in categorias
-                                    option(value=c.id)=c.nombre
+                                option(value="") -Seleccione-
+                                    each c in categorias
+                                        option(value=c.id)=c.nombre
                     div(class="md:w-1/2")
                         label(for="precio").block.text-sm.uppercase.text-gray-500.mb-2.font-bold Precio
                         select(id="precio" name="precio").w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400
                             if precios
-                            option(value="") -Seleccione-
-                                each p in precios
-                                    option(valud=p.id)=p.nombre
+                                option(value="") -Seleccione-
+                                    each p in precios
+                                        option(valud=p.id)=p.nombre
 
                 div(class="space-y-3 md:flex md:gap-4 md:space-y-0")
                     div(class="md:w-1/2")
@@ -65,9 +62,8 @@ block contenido
                             option(value="") -Seleccione-
                             -let wc = 1;
                                 while wc < 5
-                                    option(value=wc) #{wc++}
-<<<<<<< HEAD
-                div(class="border-gray-200 border-t py-5 space-y-4") 
+                                    option(value=wc) #{wc++}              
+                div(class="border-gray-200 border-t py-5 space-y-4")
                     h3(class="text-lg leading-6 font-medium text-gray-900") Ubicación
                     p(class="text-gray-600") Ubica la propiedad en el mapa
                 #mapa(class="h-96")
@@ -76,9 +72,8 @@ block contenido
                 input(type="hidden" name="calle" id="calle")
                 input(type="hidden" name="lat" id="lat")
                 input(type="hidden" name="lng" id="lng")
-=======
-                #mapa(class="h-96")
->>>>>>> 5a37895c6fcedff6f6a98ef9729aef0143b0c36a
+
+                input(class="w-full bg-indigo-500 hover:bg-indigo-400 cursor-pointer rounded-md text-white font-bold uppercase py-2" type="submit" value="Añadir Imagen")
 
 block scripts
     script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")

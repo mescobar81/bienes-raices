@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended:false}))
 //habilita cookie-parser
 app.use(cookieParser());
 
-app.use(csurf({cookie:true}))
+app.use(csurf({cookie:true}));
 
 //conexion a bd
 try {

@@ -1,10 +1,13 @@
 import express  from "express";
-import {admin, crear} from '../controllers/propiedades.controller.js';
+import {body} from 'express-validator';
+import {admin, crear, guardar} from '../controllers/propiedades.controller.js';
 
 const router = express.Router();
 
 router.get('/mis-propiedades', admin);
 router.get('/propiedades/crear', crear);
+router.post('/propiedades/crear',
+                        guardar);
 
 
 export default router;
