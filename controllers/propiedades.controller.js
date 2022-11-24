@@ -22,13 +22,14 @@ const crear = async(req, res) =>{
         mostrarBarra:true,
         categorias:categorias,
         precios:precios,
-        csrfToken:req.csrfToken()
+        csrfToken:req.csrfToken(),
+        datos:{}
     });
 }
 
 const guardar = async (req, res)=>{
     const resultado = validationResult(req);
-    console.log('Resultado', resultado);
+    console.log(req.body);
     if(!resultado.isEmpty()){
         const [categorias, precios] = await Promise.all([
             Categoria.findAll(),
@@ -41,7 +42,8 @@ const guardar = async (req, res)=>{
             categorias:categorias,
             precios:precios,
             errors:resultado.array(),
-            csrfToken:req.csrfToken()
+            csrfToken:req.csrfToken(),
+            datos:req.body
         });
     }
 
