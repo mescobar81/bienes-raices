@@ -68,10 +68,10 @@ block contenido
                     p(class="text-gray-600") Ubica la propiedad en el mapa
                 #mapa(class="h-96")
                 div
-                    p(class="calle")
-                input(type="hidden" name="calle" id="calle")
-                input(type="hidden" name="lat" id="lat")
-                input(type="hidden" name="lng" id="lng")
+                    p(class="calle")= datos.calle ? datos.calle:''
+                input(type="hidden" name="calle" id="calle" value=datos.calle)
+                input(type="hidden" name="lat" id="lat" value=datos.lat)
+                input(type="hidden" name="lng" id="lng" value=datos.lng)
 
                 input(class="w-full bg-indigo-500 hover:bg-indigo-400 cursor-pointer rounded-md text-white font-bold uppercase py-2" type="submit" value="Añadir Imagen")
 
