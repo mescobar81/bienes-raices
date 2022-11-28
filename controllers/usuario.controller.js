@@ -63,7 +63,6 @@ const autenticar = async (req, res) =>{
         httpOnly:true
     }).redirect('/bienes-raices/propiedades/crear');
 
-
 };
 
 const registro = (req, res) => {

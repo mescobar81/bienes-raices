@@ -1,7 +1,8 @@
 import {exit} from 'node:process';
 import categorias from './categorias.js';
 import precios from './precios.js';
-import {Categoria, Precio} from '../models/index.js';
+import usuarios from './usuarios.js';
+import {Categoria, Precio, Usuario} from '../models/index.js';
 import db from '../config/db.js';
 
 const importarDatos = async () =>{
@@ -23,7 +24,8 @@ const importarDatos = async () =>{
         //ver: los procesos no deben depennder uno del otro para utilizar esta sintaxis
         await Promise.all([
             Categoria.bulkCreate(categorias),
-            Precio.bulkCreate(precios)
+            Precio.bulkCreate(precios),
+            Usuario.bulkCreate(usuarios)
         ])
 
         console.log('Datos importado con éxito');

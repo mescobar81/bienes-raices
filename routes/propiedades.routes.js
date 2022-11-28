@@ -1,10 +1,11 @@
 import express  from "express";
 import {body} from 'express-validator';
+import protegerRuta from '../middlewares/protegerRuta.js';
 import {admin, crear, guardar} from '../controllers/propiedades.controller.js';
 
 const router = express.Router();
 
-router.get('/mis-propiedades', admin);
+router.get('/mis-propiedades', protegerRuta, admin);
 router.get('/propiedades/crear', crear);
 router.post('/propiedades/crear', 
                         body('tituloProp').notEmpty().withMessage('El título no puede quedar vacío'),
