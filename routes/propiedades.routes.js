@@ -6,8 +6,8 @@ import {admin, crear, guardar} from '../controllers/propiedades.controller.js';
 const router = express.Router();
 
 router.get('/mis-propiedades', protegerRuta, admin);
-router.get('/propiedades/crear', crear);
-router.post('/propiedades/crear', 
+router.get('/propiedades/crear', protegerRuta, crear);
+router.post('/propiedades/crear', protegerRuta,
                         body('tituloProp').notEmpty().withMessage('El título no puede quedar vacío'),
                         body('descripcion').notEmpty().withMessage('La descripción no puede quedar vacío')
                         .isLength({max: 100}).withMessage('El descripción es muy larga'),

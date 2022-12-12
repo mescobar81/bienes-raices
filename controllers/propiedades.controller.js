@@ -28,7 +28,6 @@ const crear = async(req, res) =>{
 
 const guardar = async (req, res)=>{
     const resultado = validationResult(req);
-    console.log(req.body);
     if(!resultado.isEmpty()){
         const [categorias, precios] = await Promise.all([
             Categoria.findAll(),
@@ -46,10 +45,12 @@ const guardar = async (req, res)=>{
         });
     }
 
-    const {tituloProp, descripcion, categoria, precio, habitaciones, estacionamiento, wc, calle, lat, lng} = req.body;
+
+    const {tituloProp:titulo, descripcion, categoria, precio, habitaciones, estacionamiento, wc, calle, lat, lng} = req.body;
+    const { id: id_usuario} = req.usuario;
     try {
-        const nuevaPropidad = await Propiedad.create({
-            tituloProp,
+        const nuevaPropiedad = await Propiedad.create({
+            titulo,
             descripcion,
             habitaciones,
             estacionamiento,
@@ -57,17 +58,17 @@ const guardar = async (req, res)=>{
             calle,
             lat,
             lng,
-            categoriaId: categoria,
-            precioId:precio,
+            imagen:'',
+            id_categoria: categoria,
+            id_precio:precio,
+            id_usuario,
         });
+
+        res.redirect(`/propiedades/agregar-imagen/${nuevaPropiedad.id_usuario}`);
     } catch (error) {
         console.log(error);
     }
-    res.render('propiedades/crear',{
-        titulo:'Crear Propiedad',
-        mostrarBarra:true,
-        csrfToken:req.csrfToken()
-    });
+    
 }
 
 export {

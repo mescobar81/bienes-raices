@@ -17,7 +17,6 @@ const portegerRuta = async (req, res, next) =>{
         console.log(decode.id);
         const usuario = await Usuario.scope('eliminarPassword').findByPk(decode.id);
 
-        console.log(usuario);
         if(usuario){
             req.usuario = usuario;
         } else {

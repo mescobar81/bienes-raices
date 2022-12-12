@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import db from '../config/db.js';
 
-const Propidad = db.define('propiedades', {
+const Propiedad = db.define('propiedades', {
     id:{
         type: DataTypes.UUID,
         defaultValue:DataTypes.UUIDV4,
@@ -48,7 +48,22 @@ const Propidad = db.define('propiedades', {
         type: DataTypes.BOOLEAN,
         allowNull:false,
         defaultValue:false
+    },
+    id_precio:{
+        type: DataTypes.INTEGER,
+        allowNull:true,
+        defaultValue:null
+    },
+    id_categoria:{
+        type: DataTypes.INTEGER,
+        allowNull:true,
+        defaultValue:null
+    },
+    id_usuario:{
+        type: DataTypes.INTEGER,
+        allowNull:true,
+        defaultValue:null
     }
 });
 
-export default Propidad;
+export default Propiedad;
