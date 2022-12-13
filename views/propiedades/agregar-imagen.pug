@@ -1,0 +1,16 @@
+extends ../layout/admin
+block styles
+    link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+block contenido
+    div
+        h1.text-4xl.my-7.font-extrabold.text-center Prueba
+            span.font-normal Node.js
+        h2.text-center.text-2xl.font-extrabold= titulo
+
+        div(class="bg-white shadow-lg max-w-2xl mx-auto px-3 py-2 mt-4")
+            form(class="space-y-2" action="/bienes-raices/propiedades/crear" method="POST")
+                input(type="hidden" name="_csrf" value=csrfToken)           
+
+                input(class="w-full bg-indigo-500 hover:bg-indigo-400 cursor-pointer rounded-md text-white font-bold uppercase py-2" type="submit" value="Añadir Imagen")
+
+block scripts
