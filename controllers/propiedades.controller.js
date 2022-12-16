@@ -61,7 +61,7 @@ const guardar = async (req, res)=>{
             id_usuario,
         });
 
-        res.redirect(`/propiedades/agregar-imagen/${nuevaPropiedad.id_usuario}`);
+        res.redirect(`/bienes-raices/propiedades/agregar-imagen/${nuevaPropiedad.id_usuario}`);
     } catch (error) {
         console.log(error);
     }

@@ -1,6 +1,6 @@
 extends ../layout/admin
 block styles
-    link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.css")
 block contenido
     div
         h1.text-4xl.my-7.font-extrabold.text-center Prueba
@@ -8,9 +8,10 @@ block contenido
         h2.text-center.text-2xl.font-extrabold= titulo
 
         div(class="bg-white shadow-lg max-w-2xl mx-auto px-3 py-2 mt-4")
-            form(class="space-y-2" action="/bienes-raices/propiedades/crear" method="POST")
+            form(class="dropzone border-dashed border-2 w-full min:h-96 h-auto rounded flex-col justify-center items-center" action="/bienes-raices/propiedades/crear" method="POST")
                 input(type="hidden" name="_csrf" value=csrfToken)           
 
-                input(class="w-full bg-indigo-500 hover:bg-indigo-400 cursor-pointer rounded-md text-white font-bold uppercase py-2" type="submit" value="Añadir Imagen")
+            input(class="mt-5 w-full bg-indigo-500 hover:bg-indigo-400 cursor-pointer rounded-md text-white font-bold uppercase py-2" type="submit" value="Añadir Imagen")
 
 block scripts
+        script(src="/js/dropzone.js")
