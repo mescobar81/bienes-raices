@@ -8,7 +8,7 @@ block contenido
         h2.text-center.text-2xl.font-extrabold= titulo
 
         div(class="bg-white shadow-lg max-w-2xl mx-auto px-3 py-2 mt-4")
-            form(class="dropzone border-dashed border-2 w-full min:h-96 h-auto rounded flex-col justify-center items-center" action="/bienes-raices/propiedades/crear" method="POST")
+            form(id= "imagen" class="dropzone border-dashed border-2 w-full min:h-96 h-auto rounded flex-col justify-center items-center" action="/bienes-raices/propiedades/crear" method="POST")
                 input(type="hidden" name="_csrf" value=csrfToken)           
 
             input(class="mt-5 w-full bg-indigo-500 hover:bg-indigo-400 cursor-pointer rounded-md text-white font-bold uppercase py-2" type="submit" value="Añadir Imagen")

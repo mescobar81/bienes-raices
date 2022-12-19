@@ -69,9 +69,31 @@ const guardar = async (req, res)=>{
 }
 
 const agregarImagen = async (req, res) =>{
-    res.render('propiedades/agregar-imagen', {
-        titulo:'Agregar Imagen'
-    });
+
+    const { id } = req.params;
+    //validar que la propiedad exista
+
+    try {
+        const propiedad = await Propiedad.findByPk(id);
+        console.log(propiedad);
+        if(!propiedad){
+            return res.redirect('/bienes-raices/mis-propiedades');
+        }
+
+        //validar que la propiedad no este publicada
+        if(propiedad.publicado){
+            return res.redirect('/bienes-raices/mis-propiedades');
+        }
+
+        //validar que la propiedad pertenece a quien visita esta pagina
+        if(req.usuario.id.toString() !== propiedad.id_usuario.toString()){
+            return res.redirect('/bienes-raices/mis-propiedades');
+        }
+        res.render('propiedades/agregar-imagen', {});
+    } catch (error) {
+        console.log(error);
+        return res.redirect('/bienes-raices/mis-propiedades');
+    }
 }
 export {
     admin,

@@ -14,7 +14,6 @@ const portegerRuta = async (req, res, next) =>{
     //comprobar el token
     try {
         const decode = jwt.verify(_token, process.env.TOKEN_SECRET);
-        console.log(decode.id);
         const usuario = await Usuario.scope('eliminarPassword').findByPk(decode.id);
 
         if(usuario){

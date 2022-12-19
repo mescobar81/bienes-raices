@@ -522,11 +522,11 @@ video {
 .h-10 {
   height: 2.5rem;
 }
-.h-96 {
-  height: 24rem;
-}
 .h-auto {
   height: auto;
+}
+.h-96 {
+  height: 24rem;
 }
 .w-full {
   width: 100%;
