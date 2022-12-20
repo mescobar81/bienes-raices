@@ -89,7 +89,10 @@ const agregarImagen = async (req, res) =>{
         if(req.usuario.id.toString() !== propiedad.id_usuario.toString()){
             return res.redirect('/bienes-raices/mis-propiedades');
         }
-        res.render('propiedades/agregar-imagen', {});
+        res.render('propiedades/agregar-imagen', {
+            titulo:`Agregar Imagen: ${propiedad.titulo}`,
+            propiedad
+        });
     } catch (error) {
         console.log(error);
         return res.redirect('/bienes-raices/mis-propiedades');
