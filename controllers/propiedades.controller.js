@@ -91,6 +91,7 @@ const agregarImagen = async (req, res) =>{
         }
         res.render('propiedades/agregar-imagen', {
             titulo:`Agregar Imagen: ${propiedad.titulo}`,
+            csrfToken:req.csrfToken(),
             propiedad
         });
     } catch (error) {

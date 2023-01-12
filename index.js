@@ -11,7 +11,7 @@ import db from './config/db.js';
 
 const app = express();
 
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:false}));
 
 //habilita cookie-parser
 app.use(cookieParser());

@@ -1,6 +1,7 @@
 extends ../layout/admin
 block styles
     link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.css")
+    meta(name="csrf-token" content= csrf-token)
 block contenido
     div
         h1.text-4xl.my-7.font-extrabold.text-center Prueba
