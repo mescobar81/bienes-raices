@@ -1,6 +1,7 @@
 import { Dropzone } from 'dropzone';
 
 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
 Dropzone.options.imagen = {
     dictDefaultMessage:'Sube tus imagenes aqui',
     acceptedFiles: '.png,.jpg,.jpeg',
@@ -14,5 +15,18 @@ Dropzone.options.imagen = {
     headers: {
         'CSRF-Token':token
     },
-    paramName:'imagen'
+    paramName:'imagen',
+    init:function(){
+        const dropzone = this;
+        const btnPulbicar = document.querySelector('#publicar');
+        btnPulbicar.addEventListener('click', function(){
+            dropzone.processQueue();
+        })
+
+        dropzone.on('queuecomplete', function(){
+            if(dropzone.getActiveFiles().length == 0){
+                window.location.href= '/bienes-raices/mis-propiedades';
+            }
+        })
+    }
 }

@@ -2,9 +2,18 @@ import { validationResult } from "express-validator";
 import { Categoria, Precio, Propiedad} from '../models/index.js';
 
 
-const admin = (req, res) =>{
+const admin = async (req, res) =>{
+
+    const id = req.usuario.id;
+
+    const propiedades = await Propiedad.findAll({
+        where: id
+    });
+
+    
     res.render('propiedades/admin', {
-        titulo:'Mis propiedades'
+        titulo:'Mis propiedades',
+        propiedades
     });
 }
 
@@ -99,9 +108,52 @@ const agregarImagen = async (req, res) =>{
         return res.redirect('/bienes-raices/mis-propiedades');
     }
 }
+
+const almacenarImagen = async (req, res, next) => {
+    const { id } = req.params;
+    //validar que la propiedad exista
+    const propiedad = await Propiedad.findByPk(id);
+
+    if(!propiedad){
+        return res.redirect('/bienes-raices/mis-propiedades');
+    }
+
+    //validar que la propiedad no este publicada
+    if(propiedad.publicado){
+        return res.redirect('/bienes-raices/mis-propiedades');
+    }
+
+    //validar que la propiedad pertenece a quien visita esta pagina
+    if(req.usuario.id.toString() !== propiedad.id_usuario.toString()){
+        return res.redirect('/bienes-raices/mis-propiedades');
+    }
+    res.render('propiedades/agregar-imagen', {
+        titulo:`Agregar Imagen: ${propiedad.titulo}`,
+        csrfToken:req.csrfToken(),
+        propiedad
+    });
+
+
+    try {
+        console.log(req.file);
+
+        //almacenar la imagen y publicar la propiedad para
+        propiedad.imagen = req.file.filename;
+        propiedad.publicado = 1;
+
+        await propiedad.save();
+
+        next();
+    } catch (error) {
+        console.log(error);
+        return res.redirect('/bienes-raices/mis-propiedades');
+    }
+
+}
 export {
     admin,
     crear,
     guardar,
-    agregarImagen
+    agregarImagen,
+    almacenarImagen
 }
