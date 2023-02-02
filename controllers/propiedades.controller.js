@@ -7,7 +7,13 @@ const admin = async (req, res) =>{
     const id = req.usuario.id;
 
     const propiedades = await Propiedad.findAll({
-        where: id
+        where: {
+            id_usuario:id
+        },
+        include:[
+            {model:Categoria, as: 'categoria'},
+            {model:Precio, as: 'precio'}
+        ]
     });
 
     

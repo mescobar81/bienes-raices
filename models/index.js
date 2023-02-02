@@ -15,6 +15,7 @@ import Usuario from './Usuario.js';
 Propiedad.belongsTo(Precio, {foreignKey:'id_precio'});
 Propiedad.belongsTo(Categoria, {foreignKey: 'id_categoria'})
 Propiedad.belongsTo(Usuario, {foreignKey:'id_usuario'});
+
 export {
     Categoria,
     Precio,
