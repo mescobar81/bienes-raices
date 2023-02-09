@@ -4,7 +4,8 @@ export default {
     mode: 'development',
     entry: {
         mapa: './src/js/mapa.js',
-        dropzone:'./src/js/agregar-imagen.js'
+        dropzone:'./src/js/agregar-imagen.js',
+        mostrarMapa: './src/js/mostrarMapa.js'
     },
     output: {
         filename : '[name].js',
